@@ -66,10 +66,10 @@ func fannkuch(n int) int {
 	flipsMax := 0
 	for {
 		if didpr < 30 {
-			for i := 0; i < n; i++ {
-				fmt.Printf("%d", 1+perm1[i])
-			}
-			fmt.Printf("\n")
+			// for i := 0; i < n; i++ {
+			// fmt.Printf("%d", 1+perm1[i])
+			// }
+			// fmt.Printf("\n")
 			didpr++
 		}
 		for ; r != 1; r-- {
@@ -123,5 +123,6 @@ func main() {
 	flag.Parse()
 	t0 := time.Now()
 	// fmt.Printf("Pfannkuchen(%d) = %d\n", *n, fannkuch(*n))
+	fannkuch(*n)
 	fmt.Printf("[time] fannkuch %s\n", time.Since(t0))
 }

@@ -2,15 +2,14 @@
 
 set prog_path=shootout
 
-call :compile %prog_path%\nbody
-call :compile %prog_path%\spectral-norm
 call :compile %prog_path%\pidigits
-call :compile %prog_path%\mandelbrot
-call :compile %prog_path%\meteor-contest
+call :compile %prog_path%\nbody
 call :compile %prog_path%\binary-tree
 call :compile %prog_path%\binary-tree-freelist
-call :compile %prog_path%\chameneosredux
 call :compile %prog_path%\fannkuch
+call :compile %prog_path%\spectral-norm
+call :compile %prog_path%\meteor-contest
+call :compile %prog_path%\chameneosredux
 
 EXIT /B 0
 

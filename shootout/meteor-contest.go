@@ -41,6 +41,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"time"
 )
 
 var max_solutions = flag.Int("n", 2100, "maximum number of solutions")
@@ -648,11 +649,14 @@ func smallest_largest() (smallest, largest *[50]int8) {
 
 func main() {
 	flag.Parse()
+	t0 := time.Now()
 	calc_pieces()
 	calc_rows()
 	solve(0, 0)
-	fmt.Printf("%d solutions found\n\n", solution_count)
-	smallest, largest := smallest_largest()
-	pretty(smallest)
-	pretty(largest)
+	// fmt.Printf("%d solutions found\n\n", solution_count)
+	// smallest, largest := smallest_largest()
+	smallest_largest()
+	// pretty(smallest)
+	// pretty(largest)
+	fmt.Printf("[time] meteor-contest %s\n", time.Since(t0))
 }

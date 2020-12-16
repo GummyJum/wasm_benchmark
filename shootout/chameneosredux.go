@@ -40,7 +40,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"strconv"
 	"time"
 )
 
@@ -91,22 +90,19 @@ type result struct {
 	same int
 }
 
-var n = 600
+var n = flag.Int("n", 600, "count")
 
 func main() {
 	flag.Parse()
 
 	t0 := time.Now()
-	if flag.NArg() > 0 {
-		n, _ = strconv.Atoi(flag.Arg(0))
-	}
 
-	for c0 := 0; c0 < ncol; c0++ {
-		for c1 := 0; c1 < ncol; c1++ {
-			fmt.Printf("%s + %s -> %s\n", colname[c0], colname[c1], colname[complement[c0|c1<<2]])
-		}
-	}
-	fmt.Print("\n")
+	// for c0 := 0; c0 < ncol; c0++ {
+	// 	for c1 := 0; c1 < ncol; c1++ {
+	// 		fmt.Printf("%s + %s -> %s\n", colname[c0], colname[c1], colname[complement[c0|c1<<2]])
+	// 	}
+	// }
+	// fmt.Print("\n")
 
 	pallmall([]int{blue, red, yellow})
 	pallmall([]int{blue, red, yellow, red, yellow, blue, red, yellow, red, blue})
@@ -126,15 +122,15 @@ func pallmall(cols []int) {
 		go creature(info{col, i}, meetingplace, ended)
 		msg += " " + colname[col]
 	}
-	fmt.Println(msg)
+	// fmt.Println(msg)
 	tot := 0
 	// wait for all results
 	for range cols {
 		result := <-ended
 		tot += result.met
-		fmt.Printf("%v%v\n", result.met, spell(result.same, true))
+		// fmt.Printf("%v%v\n", result.met, spell(result.same, true))
 	}
-	fmt.Printf("%v\n\n", spell(tot, true))
+	// fmt.Printf("%v\n\n", spell(tot, true))
 }
 
 // in this function, variables ending in 0 refer to the local creature,
@@ -147,7 +143,7 @@ func creature(info0 info, meetingplace chan rendez, ended chan result) {
 		var othername int
 		// get access to rendez data and decide what to do.
 		switch r := <-meetingplace; {
-		case r.n >= n:
+		case r.n >= *n:
 			// if no more meetings left, then send our result data and exit.
 			meetingplace <- rendez{n: r.n}
 			ended <- result{met, same}

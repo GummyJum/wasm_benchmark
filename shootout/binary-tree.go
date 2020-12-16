@@ -78,7 +78,7 @@ func main() {
 	stretchDepth := maxDepth + 1
 
 	check := bottomUpTree(0, stretchDepth).itemCheck()
-	fmt.Printf("stretch tree of depth %d\t check: %d\n", stretchDepth, check)
+	// fmt.Printf("stretch tree of depth %d\t check: %d\n", stretchDepth, check)
 
 	longLivedTree := bottomUpTree(0, maxDepth)
 
@@ -90,8 +90,9 @@ func main() {
 			check += bottomUpTree(i, depth).itemCheck()
 			check += bottomUpTree(-i, depth).itemCheck()
 		}
-		fmt.Printf("%d\t trees of depth %d\t check: %d\n", iterations*2, depth, check)
+		// fmt.Printf("%d\t trees of depth %d\t check: %d\n", iterations*2, depth, check)
 	}
-	fmt.Printf("long lived tree of depth %d\t check: %d\n", maxDepth, longLivedTree.itemCheck())
+	longLivedTree.itemCheck()
+	// fmt.Printf("long lived tree of depth %d\t check: %d\n", maxDepth, longLivedTree.itemCheck())
 	fmt.Printf("[time] binary-tree %s\n", time.Since(t0))
 }

@@ -41,7 +41,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"math"
 	"time"
 )
 
@@ -96,6 +95,6 @@ func main() {
 		vv += v[i] * v[i]
 	}
 
-	fmt.Printf("%0.9f\n", math.Sqrt(vBv/vv))
+	// fmt.Printf("%0.9f\n", math.Sqrt(vBv/vv))
 	fmt.Printf("[time] spectral-norm %s\n", time.Since(t0))
 }
