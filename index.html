@@ -1,0 +1,56 @@
+---
+layout: page
+title: Go Wasm Benchmark
+---
+
+
+<script src="/wasm_exec.js"></script>
+<script>
+	let cmd_queue = [];
+	for (i = 0; i < 5; i++) {
+		cmd_queue.push({"file":"/shootout/nbody.wasm", "n":50000000});
+		cmd_queue.push({"file":"/shootout/binary-tree.wasm", "n":15});
+		cmd_queue.push({"file":"/shootout/binary-tree-freelist.wasm", "n":15});
+		cmd_queue.push({"file":"/shootout/fannkuch.wasm", "n":12});
+		cmd_queue.push({"file":"/shootout/spectral-norm.wasm", "n":5500});
+		cmd_queue.push({"file":"/shootout/meteor-contest.wasm", "n":2098});
+		cmd_queue.push({"file":"/shootout/chameneosredux.wasm", "n":6000000});
+		cmd_queue.push({"file":"/shootout/pidigits.wasm", "n":10000});
+	}            
+
+	function next_cmd() {
+		if (cmd_queue.length < 1)
+			return;
+
+		item = cmd_queue.pop();
+		run_single(item.file, item.n);
+	}
+
+	let msgs = [];
+	msgs.push = function(e) {
+		Array.prototype.push.call(msgs, e);
+		update_textpane();
+	}
+
+	function update_textpane() {
+		document.getElementById('wasm').innerHTML = msgs.join('<br>')
+	}
+
+	async function run_single(file, argn) {
+		const go = new Go();
+		const result = await WebAssembly.instantiateStreaming(fetch(file), go.importObject);
+		let old_log = console.log;                   
+		console.log = function(line) {
+				msgs.push(line);
+		}
+		go.argv = [file, '-n', argn];
+		go.run(result.instance);
+		console.log = old_log;
+		next_cmd();
+	}
+
+	window.addEventListener('load', function () {
+		next_cmd();
+	})
+</script>
+<div id="wasm"></div>
