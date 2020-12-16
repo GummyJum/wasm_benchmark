@@ -8,14 +8,14 @@ title: Go Wasm Benchmark
 <script>
 	let cmd_queue = [];
 	for (i = 0; i < 5; i++) {
-		cmd_queue.push({"file":"/shootout/nbody.wasm", "n":50000000});
-		cmd_queue.push({"file":"/shootout/binary-tree.wasm", "n":15});
-		cmd_queue.push({"file":"/shootout/binary-tree-freelist.wasm", "n":15});
-		cmd_queue.push({"file":"/shootout/fannkuch.wasm", "n":12});
-		cmd_queue.push({"file":"/shootout/spectral-norm.wasm", "n":5500});
-		cmd_queue.push({"file":"/shootout/meteor-contest.wasm", "n":2098});
-		cmd_queue.push({"file":"/shootout/chameneosredux.wasm", "n":6000000});
-		cmd_queue.push({"file":"/shootout/pidigits.wasm", "n":10000});
+		cmd_queue.push({"file":"/wasm_benchmark/shootout/nbody.wasm", "n":50000000});
+		cmd_queue.push({"file":"/wasm_benchmark/shootout/binary-tree.wasm", "n":15});
+		cmd_queue.push({"file":"/wasm_benchmark/shootout/binary-tree-freelist.wasm", "n":15});
+		cmd_queue.push({"file":"/wasm_benchmark/shootout/fannkuch.wasm", "n":12});
+		cmd_queue.push({"file":"/wasm_benchmark/shootout/spectral-norm.wasm", "n":5500});
+		cmd_queue.push({"file":"/wasm_benchmark/shootout/meteor-contest.wasm", "n":2098});
+		cmd_queue.push({"file":"/wasm_benchmark/shootout/chameneosredux.wasm", "n":6000000});
+		cmd_queue.push({"file":"/wasm_benchmark/shootout/pidigits.wasm", "n":10000});
 	}            
 
 	function next_cmd() {
