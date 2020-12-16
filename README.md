@@ -1,17 +1,9 @@
 # Preface
-This is a simple benchmark for go vs wasm-go.
+This is a simple benchmark for go vs go-wasm.
 
-I want to compare the wasm vs. native implementations.
+The goal is to compare the wasm vs. native implementations. (I saw several JS vs Wasm compare but not a Go vs Go-Wasm)
 
-The code for the benchmark programs was taken from the go benchmark folder https://go.googlesource.com/go/+/c4f5421/test/bench/shootout
-that is also used for the benchmark game
-
-<!-- ## TODO: -->
-<!-- - compile all go to exe -->
-<!-- - compile all go to wasm -->
-<!-- - test exe -->
-<!-- - build a simple webpage for the event -->
-<!-- - compile all c to exe -->
+The benchmark programs were taken from the benchmark game https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html.
 
 # Results
 | Name                 |   AVG Go [s] |   STD Go [s] |   AVG Go-Wasm (chrome) [s] |   STD Go-Wasm (chrome) [s] |
@@ -35,11 +27,19 @@ The programs were compiled in default settings (go compiler and and ran nativly 
 I used Chrome 87 for the wasm runtime which is my default browser at the time.
 
 ## Compile
-Assuming you have Go and you are using windows just run compile_win.bat.
+Assuming you have Go and you are using windows you can run:
 
+```
+compile_win.bat
+```
 
 ## Run
-Then for running the Go binaries you can use run_win.bat and for the web use either the Go two-liner simple http-server:
+Then for running the Go binaries you can use 
+```
+run_win.bat 
+```
+
+For Wasm use either the Go two-liner simple http-server:
 ```
 $ go get github.com/snwfdhmp/simplehttp #install
 $ simplehttp
